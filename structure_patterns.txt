@@ -1,0 +1,22 @@
+### Patterns for files ###
+### Добавление форматов файлов обрабатываемых программой ###
+### Для добавления формата нужно заполнить key:<знач> имя_формата, name: <знач> название в интерфейсе, pattern:<знач*> регулярное_выражение (см. ниже) ###
+### Для непосредственно регулярного выражения нужно проставить границы <regular_start>знач<regular_end>
+### Для удаления формата можно просто закоментировать строки с форматом (#) ###
+
+# 1 Файл с ключами от линукс статистики (%user и т.д.) 
+ key: <ready_linux_stat>
+name: <tsv_Linux>
+pattern: <regular_start>Period.*%user\t%nice\t%system.*\n[\d]{2}:[\d]{2}:[\d]{2}\t[0-9.,]+\t[0-9.,]+\t[0-9.,]+\t.*<regular_end>
+
+# 2 Выходный файл csv (PerfMon) 
+ key: <ready_csv_pfmn>
+name: <csv_PfMon>
+pattern: <regular_start>[\]Av[a-zA-Z\s]Bytes["|'].+?[%]\sProc.+?Time.+$<regular_end>
+
+# 3 Другие структуры файлов
+key: <other_struct_stat>
+name: <oth_stat_files>
+pattern: <regular_start>[0-9]+.*<regular_end>
+
+### Просьба не удалять(!) завершающий комментарий - возможно некоторые скрытные символы пригодятся.
